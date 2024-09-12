@@ -1,0 +1,16 @@
+<div class="ui container">
+  <div class="ui four cards">
+    <app-product-card class="ui card" *ngFor="let product of products$ | async"
+                      [product]="product"
+                      (edit)="openEditModal($event)"
+                      (delete)="onDeleteProduct($event)">
+    </app-product-card>
+  </div>
+</div>
+<app-edit-product-dialog
+  [product]="editProduct"
+  (save)="onSaveEditProduct($event)"
+  (cancel)="onCancelEdit()">
+</app-edit-product-dialog>
+
+

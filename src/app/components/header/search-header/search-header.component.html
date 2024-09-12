@@ -1,0 +1,31 @@
+<div class="ui container">
+  <div class="ui segment" >
+    <div class="ui equal width grid">
+      <div class="row">
+        <div class="column">
+          <img src="../../../../assets/nanox-header.jpeg" alt="Logo" class="logo-img"/>
+        </div>
+        <div class="column">
+          <div class="ui icon fluid input ">
+            <input (keyup)="filterProduct($event)" type="text" placeholder="Search...">
+            <i class="search icon"></i>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui animated positive  button" tabindex="0" (click)="openAddProductDialog()">
+            <div class="visible content">Add</div>
+            <div class="hidden content">
+              <i class=" plus icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-add-product-dialog
+      *ngIf="showDialog"
+      (save)="saveProduct($event)"
+      (cancel)="closeDialog()">
+    </app-add-product-dialog>
+  </div>
+</div>

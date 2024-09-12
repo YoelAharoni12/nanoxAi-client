@@ -1,0 +1,34 @@
+<div *ngIf="product.image.length > 1; else elseBlock" class="ui slide masked reveal image">
+  <img [src]="product.image[0]" class="ui fluid image visible content">
+  <img [src]="product.image[1]" class="hidden content">
+</div>
+<ng-template #elseBlock>
+  <img class="ui fluid image" [src]="product.image[0]">
+</ng-template>
+<div class="content">
+  <div class="header">{{ product.name }}</div>
+  <div class="description">{{ product.tags }}</div>
+  <div class="meta">Price: ${{ product.price }}</div>
+  <div class="meta">Barcode: {{ product.barcode }}</div>
+  <div class="ui yellow rating disabled">
+    <!--    TODO://Need to do it more elegant-->
+    <i class="star icon" *ngFor="let star of [1, 2, 3, 4, 5]"
+       [ngClass]="{'active': star <= product.rating}">
+    </i>
+  </div>
+</div>
+<div class="extra content">
+  <div class="ui vertical animated left floated button" tabindex="0" (click)="onEdit()">
+    <div class="hidden content">Edit</div>
+    <div class="visible content">
+      <i class="edit icon"></i>
+    </div>
+  </div>
+  <div class="ui vertical animated right floated negative button" tabindex="0" (click)="onDelete()">
+    <div class="hidden content">Delete</div>
+    <div class="visible content">
+      <i class="trash alternate icon"></i>
+    </div>
+  </div>
+</div>
+

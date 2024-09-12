@@ -1,0 +1,33 @@
+<div *ngIf="product" class="ui dimmer modals page transition visible active">
+  <div class="ui modal transition visible active" id="edit-product-modal">
+    <div class="header">Edit Product</div>
+    <div class="content">
+      <form class="ui form" (ngSubmit)="onSave()">
+        <div class="field">
+          <label>Name</label>
+          <input type="text" [(ngModel)]="product.name" name="name"/>
+        </div>
+        <div class="field">
+          <label>Barcode</label>
+          <input type="text" maxlength="13" [(ngModel)]="product.barcode" name="barcode"/>
+        </div>
+        <div class="field">
+          <label>Price</label>
+          <input type="number" [(ngModel)]="product.price" name="price" step="0.1"/>
+        </div>
+        <div class="field">
+          <label>Rating</label>
+          <input type="number" [(ngModel)]="product.rating" name="rating" min="1" max="5" step="0.01"/>
+        </div>
+        <div class="field">
+          <label>Image URL</label>
+          <input type="text" [(ngModel)]="product.image[0]" name="image"/>
+        </div>
+        <div class="actions">
+          <button type="button" class="ui button" (click)="onCancel()">Cancel</button>
+          <button type="submit" class="ui button positive" [disabled]="!isFormValid()">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
