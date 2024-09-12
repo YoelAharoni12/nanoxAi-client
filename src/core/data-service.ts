@@ -1,57 +1,52 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, map, Observable, tap} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {ProductService} from "./products.service";
 import {Product} from "../share/models/product.model";
 
 @Injectable()
 export class DataService {
-  private dataSubject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
-  searchTerm: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  private _products$: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
+  searchTerm$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   data$: Observable<Product[]>
 
   constructor(private productService: ProductService) {
     this.fetchInitialData();
-    this.data$ = this.dataSubject.asObservable();
+    this.data$ = this._products$.asObservable();
   }
 
   private fetchInitialData() {
     this.productService.loadProducts().subscribe(products => {
-      this.dataSubject.next(products);
+      this._products$.next(products);
     })
-  }
-
-  getData(): Observable<Product[]> {
-    return this.dataSubject.asObservable();
   }
 
   updateItem(id: string, updatedData: Partial<Product>) {
     this.productService.updateProduct$(id, updatedData).subscribe(() => {
-      const currentData = this.dataSubject.getValue();
+      const currentData = this._products$.getValue();
       const updatedDataList = currentData.map(item =>
         item.id === id ? {...item, ...updatedData} : item
       );
-      this.dataSubject.next(updatedDataList);
+      this._products$.next(updatedDataList);
     })
 
   }
 
   deleteItem(id: string) {
-
     this.productService.deleteProduct(id).subscribe(() => {
-      const currentData = this.dataSubject.getValue();
+      const currentData = this._products$.getValue();
       const updatedData = currentData.filter((item) => item.id !== id);
-      this.dataSubject.next([...updatedData]);
+      this._products$.next([...updatedData]);
     })
   }
 
-  addItem(newItem: Product) {
-    this.productService.addProduct$(newItem).subscribe(() => {
-      const currentData = this.dataSubject.getValue();
-      this.dataSubject.next([...currentData, newItem]); // Trigger rerender by updating state
+  addItem(newProduct: Omit<Product, 'id'>) {
+    this.productService.addProduct$(newProduct).subscribe((product) => {
+      const currentData = this._products$.getValue();
+      this._products$.next([...currentData, product]);
     })
   }
 
   setSearch(searchTerm: string) {
-    this.searchTerm.next(searchTerm)
+    this.searchTerm$.next(searchTerm)
   }
 }
