@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, map, Observable, tap} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {Product} from "../share/models/product.model";
-
 
 @Injectable()
 export class ProductService {
@@ -14,23 +13,19 @@ export class ProductService {
     this.products$ = this._productsSubject.asObservable()
   }
 
-  loadProducts(): Observable<Product[]> {
+  loadProducts$(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiUrl}`)
   }
 
-  getProducts$(): Observable<Product[]> {
-    return this.products$;
-  }
-
-  addProduct$(product: Product): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}`, product);
+  addProduct$(product: Omit<Product, 'id'>): Observable<Product> {
+    return this.http.post<Product>(`${this.apiUrl}`, product);
   }
 
   updateProduct$(id: string, product: Partial<Product>): Observable<void> {
     return this.http.patch<void>(`${this.apiUrl}/${id}`, product)
   }
 
-  deleteProduct(id: string): Observable<void> {
+  deleteProduct$(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`)
   }
 }

@@ -8,11 +8,10 @@ import {DataService} from "../../../../core/data-service";
   styleUrls: ['./search-header.component.less']
 })
 export class SearchHeaderComponent {
+  showDialog: boolean = false;
 
   constructor(private dataService: DataService) {
   }
-
-  showDialog: boolean = false;
 
   openAddProductDialog() {
     this.showDialog = true;
@@ -22,7 +21,7 @@ export class SearchHeaderComponent {
     this.showDialog = false;
   }
 
-  saveProduct(product: Product) {
+  saveProduct(product: Omit<Product, 'id'>) {
     this.dataService.addItem(product)
     this.closeDialog();
   }

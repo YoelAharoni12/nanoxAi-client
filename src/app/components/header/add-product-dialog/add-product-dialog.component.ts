@@ -8,8 +8,7 @@ import {Product} from "../../../../share/models/product.model";
 })
 export class AddProductDialogComponent {
   //TODO: i need to remove the id filed from add product
-  product: Product = {
-    id: "",
+  product: Omit<Product,'id'> = {
     barcode: '',
     image: [''],
     name: '',
@@ -17,7 +16,7 @@ export class AddProductDialogComponent {
     price: 0,
     tags: []
   };
-  @Output() save = new EventEmitter<Product>();
+  @Output() save = new EventEmitter<Omit<Product,'id'>>();
   @Output() cancel = new EventEmitter<void>();
 
   onSave() {

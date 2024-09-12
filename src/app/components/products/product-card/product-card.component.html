@@ -11,7 +11,6 @@
   <div class="meta">Price: ${{ product.price }}</div>
   <div class="meta">Barcode: {{ product.barcode }}</div>
   <div class="ui yellow rating disabled">
-    <!--    TODO://Need to do it more elegant-->
     <i class="star icon" *ngFor="let star of [1, 2, 3, 4, 5]"
        [ngClass]="{'active': star <= product.rating}">
     </i>

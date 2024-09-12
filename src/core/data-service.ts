@@ -15,7 +15,7 @@ export class DataService {
   }
 
   private fetchInitialData() {
-    this.productService.loadProducts().subscribe(products => {
+    this.productService.loadProducts$().subscribe(products => {
       this._products$.next(products);
     })
   }
@@ -32,7 +32,7 @@ export class DataService {
   }
 
   deleteItem(id: string) {
-    this.productService.deleteProduct(id).subscribe(() => {
+    this.productService.deleteProduct$(id).subscribe(() => {
       const currentData = this._products$.getValue();
       const updatedData = currentData.filter((item) => item.id !== id);
       this._products$.next([...updatedData]);

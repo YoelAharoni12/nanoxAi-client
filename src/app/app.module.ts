@@ -6,13 +6,12 @@ import {AppComponent} from './app.component';
 import {ProductsComponent} from './components/products/products.component';
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
-import {ProductService} from "../core/products.service";
 import {HttpClientModule} from "@angular/common/http";
-import {DataService} from "../core/data-service";
 import {ProductCardComponent} from './components/products/product-card/product-card.component';
 import {EditProductDialogComponent} from "./components/edit-product-dialog/edit-product-dialog.component";
-import { SearchHeaderComponent } from './components/header/search-header/search-header.component';
-import { AddProductDialogComponent } from './components/header/add-product-dialog/add-product-dialog.component';
+import {SearchHeaderComponent} from './components/header/search-header/search-header.component';
+import {AddProductDialogComponent} from './components/header/add-product-dialog/add-product-dialog.component';
+import {CoreModule} from "../core/core.module";
 
 @NgModule({
   declarations: [
@@ -27,9 +26,9 @@ import { AddProductDialogComponent } from './components/header/add-product-dialo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    CommonModule, HttpClientModule
+    CommonModule, HttpClientModule, CoreModule
   ],
-  providers: [ProductService, DataService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
