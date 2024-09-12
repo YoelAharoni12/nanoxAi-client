@@ -28,7 +28,6 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.less",
               "node_modules/fomantic-ui/dist/semantic.min.css"
             ],
             "scripts": []
@@ -96,9 +95,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "src/styles.less"
-            ],
+            "styles": [],
             "scripts": []
           }
         }
