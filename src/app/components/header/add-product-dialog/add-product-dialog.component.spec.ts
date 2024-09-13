@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AddProductDialogComponent } from './add-product-dialog.component';
+import {AddProductDialogComponent} from './add-product-dialog.component';
+import {FormBuilder} from "@angular/forms";
 
 describe('AddProductDialogComponent', () => {
   let component: AddProductDialogComponent;
@@ -8,9 +9,10 @@ describe('AddProductDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddProductDialogComponent ]
+      declarations: [AddProductDialogComponent],
+      providers: [FormBuilder]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(AddProductDialogComponent);
     component = fixture.componentInstance;

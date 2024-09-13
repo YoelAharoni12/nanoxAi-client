@@ -15,3 +15,5 @@ import {AppModule} from './app/app.module';
 // Example: explicitly import your test files
 import './app/core/products.service.spec';
 import './app/core/data-service.spec';
+import './app/components/header/add-product-dialog/add-product-dialog.component.spec'
+import './app/components/edit-product-dialog/edit-product-dialog.component.spec'

@@ -21,7 +21,6 @@ export class ProductsComponent {
   }
 
   onSaveEditProduct(product: Product) {
-    console.log("onSaveEditProduct", product)
     this.dataService.updateItem(product.id, product);
     this.editProduct = null
   }

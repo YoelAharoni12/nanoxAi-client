@@ -40,8 +40,6 @@ export class EditProductDialogComponent implements OnChanges {
 
   onSave() {
     if (this.isFormValid()) {
-      console.log(this.product)
-      console.log(this.productForm.value)
       this.save.emit({...this.productForm.value, id: this.product!.id});
     }
   }

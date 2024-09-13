@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditProductDialogComponent } from './edit-product-dialog.component';
+import {FormBuilder} from "@angular/forms";
 
 describe('EditProductDialogComponent', () => {
   let component: EditProductDialogComponent;
@@ -8,7 +9,8 @@ describe('EditProductDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditProductDialogComponent ]
+      declarations: [ EditProductDialogComponent ],
+      providers:[FormBuilder]
     })
     .compileComponents();
 

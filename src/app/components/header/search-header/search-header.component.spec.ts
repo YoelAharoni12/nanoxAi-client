@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SearchHeaderComponent } from './search-header.component';
+import {SearchHeaderComponent} from './search-header.component';
+import {DataService} from "../../../core/data-service";
 
 describe('SearchHeaderComponent', () => {
   let component: SearchHeaderComponent;
@@ -8,9 +9,10 @@ describe('SearchHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchHeaderComponent ]
+      declarations: [SearchHeaderComponent],
+      providers: [DataService]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(SearchHeaderComponent);
     component = fixture.componentInstance;
