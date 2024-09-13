@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ProductsComponent} from './components/products/products.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {ProductCardComponent} from './components/products/product-card/product-card.component';
@@ -26,7 +26,7 @@ import {CoreModule} from "./core/core.module";
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    CommonModule, HttpClientModule, CoreModule
+    CommonModule, HttpClientModule, CoreModule, ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

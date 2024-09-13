@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Product} from "../../../share/models/product.model";
 
 @Component({
@@ -7,20 +8,34 @@ import {Product} from "../../../share/models/product.model";
   styleUrls: ['./add-product-dialog.component.less']
 })
 export class AddProductDialogComponent {
-  //TODO: i need to remove the id filed from add product
-  product: Omit<Product,'id'> = {
-    barcode: '',
-    image: [''],
-    name: '',
-    rating: 0,
-    price: 0,
-    tags: []
-  };
-  @Output() save = new EventEmitter<Omit<Product,'id'>>();
+  productForm: FormGroup;
+
+  @Output() save = new EventEmitter<Omit<Product, 'id'>>();
   @Output() cancel = new EventEmitter<void>();
 
+  constructor(private fb: FormBuilder) {
+    this.productForm = this.fb.group({
+      name: ['', Validators.required],
+      barcode: ['', [Validators.required, Validators.maxLength(13)]],
+      price: [0, [Validators.required, Validators.min(0.01)]],
+      rating: [0, [Validators.required, Validators.min(1), Validators.max(5)]],
+      image: this.fb.array([''], Validators.required),
+      tags: this.fb.array([''], Validators.required)
+    });
+  }
+
+  get imageArray(): FormArray {
+    return this.productForm.get('image') as FormArray;
+  }
+
+  get tagsArray(): FormArray {
+    return this.productForm.get('tags') as FormArray;
+  }
+
   onSave() {
-    this.save.emit(this.product);
+    if (this.isFormValid()) {
+      this.save.emit(this.productForm.value);
+    }
   }
 
   onCancel() {
@@ -28,10 +43,6 @@ export class AddProductDialogComponent {
   }
 
   isFormValid(): boolean {
-    return this.product.name.trim() !== '' &&
-      this.product.barcode.trim() !== '' &&
-      this.product.price > 0 &&
-      this.product.rating >= 1 && this.product.rating <= 5 &&
-      this.product.image[0].trim() !== '';
+    return this.productForm.valid;
   }
 }
