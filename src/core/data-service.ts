@@ -14,17 +14,17 @@ export class DataService {
     this.data$ = this._products$.asObservable();
   }
 
-  private fetchInitialData() {
+  fetchInitialData() {
     this.productService.loadProducts$().subscribe(products => {
       this._products$.next(products);
     })
   }
 
   updateItem(id: string, updatedData: Partial<Product>) {
-    this.productService.updateProduct$(id, updatedData).subscribe(() => {
+    this.productService.updateProduct$(id, updatedData).subscribe((product) => {
       const currentData = this._products$.getValue();
       const updatedDataList = currentData.map(item =>
-        item.id === id ? {...item, ...updatedData} : item
+        item.id === id ? {...product} : item
       );
       this._products$.next(updatedDataList);
     })
