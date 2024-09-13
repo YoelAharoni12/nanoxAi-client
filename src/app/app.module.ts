@@ -12,6 +12,7 @@ import {EditProductDialogComponent} from "./components/edit-product-dialog/edit-
 import {SearchHeaderComponent} from './components/header/search-header/search-header.component';
 import {AddProductDialogComponent} from './components/header/add-product-dialog/add-product-dialog.component';
 import {CoreModule} from "./core/core.module";
+import { SharedFormComponent } from './share/componnents/shared-form/shared-form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {CoreModule} from "./core/core.module";
     ProductCardComponent,
     EditProductDialogComponent,
     SearchHeaderComponent,
-    AddProductDialogComponent
+    AddProductDialogComponent,
+    SharedFormComponent
   ],
   imports: [
     BrowserModule,

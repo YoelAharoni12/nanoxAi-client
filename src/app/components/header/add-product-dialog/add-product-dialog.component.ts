@@ -8,13 +8,14 @@ import {Product} from "../../../share/models/product.model";
   styleUrls: ['./add-product-dialog.component.less']
 })
 export class AddProductDialogComponent {
-  productForm: FormGroup;
-
+  addProductForm: FormGroup;
+  title: string = 'Add Product';
+  @Input() isShowDialog: boolean;
   @Output() save = new EventEmitter<Omit<Product, 'id'>>();
   @Output() cancel = new EventEmitter<void>();
 
   constructor(private fb: FormBuilder) {
-    this.productForm = this.fb.group({
+    this.addProductForm = this.fb.group({
       name: ['', Validators.required],
       barcode: ['', [Validators.required, Validators.maxLength(13)]],
       price: [0, [Validators.required, Validators.min(0.01)]],
@@ -24,18 +25,8 @@ export class AddProductDialogComponent {
     });
   }
 
-  get imageArray(): FormArray {
-    return this.productForm.get('image') as FormArray;
-  }
-
-  get tagsArray(): FormArray {
-    return this.productForm.get('tags') as FormArray;
-  }
-
-  onSave() {
-    if (this.isFormValid()) {
-      this.save.emit(this.productForm.value);
-    }
+  onSave(product: Product) {
+    this.save.emit(product);
   }
 
   onCancel() {
@@ -43,6 +34,6 @@ export class AddProductDialogComponent {
   }
 
   isFormValid(): boolean {
-    return this.productForm.valid;
+    return this.addProductForm.valid;
   }
 }

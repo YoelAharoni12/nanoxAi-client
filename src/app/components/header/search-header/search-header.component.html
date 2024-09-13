@@ -1,5 +1,5 @@
 <div class="ui container">
-  <div class="ui segment" >
+  <div class="ui segment">
     <div class="ui equal width grid">
       <div class="row">
         <div class="column">
@@ -23,7 +23,7 @@
     </div>
 
     <app-add-product-dialog
-      *ngIf="showDialog"
+      [isShowDialog]="showDialog"
       (save)="saveProduct($event)"
       (cancel)="closeDialog()">
     </app-add-product-dialog>

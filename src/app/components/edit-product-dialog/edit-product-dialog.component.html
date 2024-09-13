@@ -1,41 +1,8 @@
-<div *ngIf="product" class="ui dimmer modals page transition visible active">
-  <div class="ui modal transition visible active" id="edit-product-modal">
-    <div class="header">Edit Product</div>
-    <div class="content">
-      <form class="ui form" [formGroup]="productForm" (ngSubmit)="onSave()">
-        <div class="field ">
-          <label>Name</label>
-          <input type="text" formControlName="name"/>
-        </div>
-        <div class="field">
-          <label>Barcode</label>
-          <input type="text" maxlength="13" formControlName="barcode"/>
-        </div>
-        <div class="field">
-          <label>Price</label>
-          <input type="number" formControlName="price" step="0.1"/>
-        </div>
-        <div class="field">
-          <label>Rating</label>
-          <input type="number" formControlName="rating" min="1" max="5" step="0.1"/>
-        </div>
-        <div formArrayName="image">
-          <div *ngFor="let image of imageArray.controls; let i = index">
-            <label>Image URL</label>
-            <input [formControlName]="i"/>
-          </div>
-        </div>
-        <div formArrayName="tags">
-          <div *ngFor="let tag of tagsArray.controls; let i = index">
-            <label>Tag</label>
-            <input [formControlName]="i"/>
-          </div>
-        </div>
-        <div class="actions">
-          <button type="button" class="ui button" (click)="onCancel()">Cancel</button>
-          <button type="submit" class="ui button positive" [disabled]="!isFormValid()">Save</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+<app-shared-form
+  [product]="product"
+  [formGroup]="editProductForm"
+  [title]="title"
+  (save)="onSave($event)"
+  (cancel)="onCancel()"
+>
+</app-shared-form>

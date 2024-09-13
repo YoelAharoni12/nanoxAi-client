@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Product} from "../../share/models/product.model";
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 
@@ -7,14 +7,15 @@ import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
   templateUrl: './edit-product-dialog.component.html',
   styleUrls: ['./edit-product-dialog.component.less']
 })
-export class EditProductDialogComponent implements OnChanges {
-  productForm: FormGroup
+export class EditProductDialogComponent {
+  editProductForm: FormGroup
+  title: string = "Edit product"
   @Input() product: Product | null = null;
   @Output() save = new EventEmitter<Product>();
   @Output() cancel = new EventEmitter<void>();
 
   constructor(private fb: FormBuilder) {
-    this.productForm = this.fb.group({
+    this.editProductForm = this.fb.group({
       name: [''],
       barcode: ['', [Validators.maxLength(13)]],
       price: [0, [Validators.min(0.01)]],
@@ -24,49 +25,12 @@ export class EditProductDialogComponent implements OnChanges {
     });
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['product'] && this.product) {
-      this.setFormValues(this.product);
-    }
-  }
-
-  get imageArray(): FormArray {
-    return this.productForm.get('image') as FormArray;
-  }
-
-  get tagsArray(): FormArray {
-    return this.productForm.get('tags') as FormArray;
-  }
-
-  onSave() {
-    if (this.isFormValid()) {
-      this.save.emit({...this.productForm.value, id: this.product!.id});
-    }
+  onSave(product: Product) {
+    this.save.emit(product);
   }
 
   onCancel() {
     this.cancel.emit();
   }
 
-  isFormValid(): boolean {
-    return this.productForm.valid;
-  }
-
-  private setFormValues(product: Product) {
-    this.productForm.patchValue({
-      name: product.name,
-      barcode: product.barcode,
-      price: product.price,
-      rating: product.rating
-    });
-
-    this.setFormArray(this.imageArray, product.image[0]);
-    this.setFormArray(this.tagsArray, product.tags[0]);
-  }
-
-  private setFormArray(formArray: FormArray, value: string) {
-    formArray.clear();
-    formArray.push(this.fb.control(value));
-
-  }
 }
