@@ -13,6 +13,5 @@ import {environment} from './environments/environment';
 import {AppModule} from './app/app.module';
 
 // Example: explicitly import your test files
-// import './core/products.service.spec';
-import './core/data-service.spec';
-// Add additional imports for other test files as needed
+import './app/core/products.service.spec';
+import './app/core/data-service.spec';

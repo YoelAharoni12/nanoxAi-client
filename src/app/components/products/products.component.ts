@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {Product} from "../../../share/models/product.model";
-import {combineLatest, map, Observable} from "rxjs";
-import {DataService} from "../../../core/data-service";
+import {Product} from "../../share/models/product.model";
+import {Observable} from "rxjs";
+import {DataService} from "../../core/data-service";
 
 @Component({
   selector: 'app-products',

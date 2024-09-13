@@ -11,7 +11,7 @@ import {ProductCardComponent} from './components/products/product-card/product-c
 import {EditProductDialogComponent} from "./components/edit-product-dialog/edit-product-dialog.component";
 import {SearchHeaderComponent} from './components/header/search-header/search-header.component';
 import {AddProductDialogComponent} from './components/header/add-product-dialog/add-product-dialog.component';
-import {CoreModule} from "../core/core.module";
+import {CoreModule} from "./core/core.module";
 
 @NgModule({
   declarations: [

@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {Product} from "../../../../share/models/product.model";
-import {DataService} from "../../../../core/data-service";
+import {Product} from "../../../share/models/product.model";
+import {DataService} from "../../../core/data-service";
+
 
 @Component({
   selector: 'app-search-header',

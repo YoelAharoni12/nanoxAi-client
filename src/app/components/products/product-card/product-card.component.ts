@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { Product } from "../../../../share/models/product.model";
+import { Product } from "../../../share/models/product.model";
 
 @Component({
   selector: 'app-product-card',

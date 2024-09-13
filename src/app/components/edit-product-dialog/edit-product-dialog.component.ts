@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Product} from "../../../share/models/product.model";
+import {Product} from "../../share/models/product.model";
 
 @Component({
   selector: 'app-edit-product-dialog',
