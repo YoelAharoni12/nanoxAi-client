@@ -13,10 +13,7 @@ export class ProductsComponent {
   editProduct: Product | null
 
   constructor(private dataService: DataService) {
-    this.products$ = combineLatest(this.dataService.data$, this.dataService.searchTerm$).pipe(
-      map(([products, searchTerm]) => products.filter(product =>
-        `${product.name}`.toLowerCase().includes(searchTerm.toLowerCase()))),
-    )
+    this.products$ = this.dataService.getFilteredProducts$()
   }
 
   openEditModal(product: Product) {

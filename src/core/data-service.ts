@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, combineLatest, map, Observable} from 'rxjs';
 import {ProductService} from "./products.service";
 import {Product} from "../share/models/product.model";
 
@@ -48,5 +48,12 @@ export class DataService {
 
   setSearch(searchTerm: string) {
     this.searchTerm$.next(searchTerm)
+  }
+
+  getFilteredProducts$(): Observable<Product[]> {
+    return combineLatest(this.data$, this.searchTerm$).pipe(
+      map(([products, searchTerm]) => products.filter(product =>
+        `${product.name}`.toLowerCase().includes(searchTerm.toLowerCase()))),
+    )
   }
 }
