@@ -1,27 +1,57 @@
-# NanoxClient
+#  🏪 NanoxAI client store
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.13.
+This is an Angular-based web application for managing products in a store. Users can add, edit, and delete products, with data fetched and updated through an API.
+
+## Features
+
+- Display a list of products
+- Add new products
+- Edit existing products
+- Delete products
+- Search for products by name or tag
+- Responsive UI using Fomantic-UI
+
+## Technologies
+
+- 🅰️ **Angular 14**: Frontend framework
+- **TypeScript**: Programming language
+- **Fomantic-UI**: For styling components
+- **Docker**: (for containerization, if applicable)
+
+## Getting Started
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- Node.js (v14 or higher)
+- 🅰️ Angular CLI (v14 or higher)
+- 🐳 Docker (for Docker setup)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd nanox-client
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+### Docker Setup 🐳
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+To set up the project with Docker, follow these steps:
 
-## Further help
+1. Ensure Docker is installed on your system.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+2. Build the Docker image by running the following command in the root of the project directory:
+   ```bash
+   docker build -t nanox-client-yoel .
+3. Once the image build run the following command
+   ```bash
+   docker run -p 4200:4200 nanox-server-yoel
